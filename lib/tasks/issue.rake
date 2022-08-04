@@ -30,7 +30,7 @@ namespace :issue do
     # create github issue
     client.create_issue(repo, title, body, {labels: labels})
 
-    p "end
+    p "end"
 
   end
 
