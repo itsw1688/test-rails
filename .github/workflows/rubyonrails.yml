@@ -46,9 +46,10 @@ jobs:
 
       - name: Run Task
         run: |
-          rails import:run
-          echo $?
-          echo '{"test":"testtest"}' | jq .
+          res=$(rails import:run)
+          echo $res
+          err_code=$(echo $res| jq .err_code)
+          echo $err_code
 
       # Add or replace database setup steps here
       #- name: Set up database schema

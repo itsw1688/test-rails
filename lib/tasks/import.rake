@@ -6,6 +6,10 @@ namespace :import do
 
     puts "start"
 
+    puts "end"
+
+    return '{"err_code":100}'
+
   end
 
 end
