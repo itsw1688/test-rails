@@ -41,6 +41,7 @@ jobs:
 
       - name: Setup
         run: |
+          env
           gem install bundler aws_lambda_ric
           bundle install -j4
 
@@ -50,6 +51,9 @@ jobs:
           #echo $res
           ls -ltr
           ls -ltr log
+
+      - name: Run Task
+        run: |
           err_code=$(cat log/${RAILS_ENV}.log | jq .err_code)
           echo $err_code
 
