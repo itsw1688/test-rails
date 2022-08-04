@@ -19,6 +19,7 @@ jobs:
       image: ruby:2.6.5
       env:
         RAILS_ENV: test
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -56,6 +57,7 @@ jobs:
 
       - name: Submit Issue
         run: |
+          env
           rails issue:run
 
       # Add or replace database setup steps here
