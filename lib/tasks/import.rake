@@ -4,9 +4,11 @@ namespace :import do
 
   task :run => :environment do
 
-    p "start"
+    logger.info  'LOGGER TEST >>> info'
 
-    p "end"
+    #p "start"
+
+    #p "end"
 
     puts '{"err_code":100}'
 
