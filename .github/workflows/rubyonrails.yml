@@ -46,9 +46,9 @@ jobs:
 
       - name: Run Task
         run: |
-          res=$(rails import:run)
-          echo $res
-          err_code=$(echo $res| jq .err_code)
+          rails import:run
+          #echo $res
+          err_code=$(cat log/development.log | jq .err_code)
           echo $err_code
 
       # Add or replace database setup steps here
