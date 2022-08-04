@@ -25,7 +25,7 @@ jobs:
 
       - name: Install Packages
         run: |
-          apt-get update -qq && apt-get install -y mariadb-client
+          apt-get update -qq && apt-get install -y mariadb-client jq
           apt-get update && apt-get install -y curl apt-transport-https wget
           curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
           echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
@@ -42,11 +42,13 @@ jobs:
       - name: Setup
         run: |
           gem install bundler aws_lambda_ric
-          bundle install
+          bundle install --clean -j4
 
       - name: Run Task
         run: |
           rails import:run
+          echo $?
+          echo '{"test":"testtest"}' | jq .
 
       # Add or replace database setup steps here
       #- name: Set up database schema
