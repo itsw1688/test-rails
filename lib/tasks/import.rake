@@ -8,7 +8,7 @@ namespace :import do
 
     puts "end"
 
-    return '{"err_code":100}'
+    next '{"err_code":100}'
 
   end
 
