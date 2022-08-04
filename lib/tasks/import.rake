@@ -4,7 +4,7 @@ namespace :import do
 
   task :run => :environment do
 
-    logger.info  'LOGGER TEST >>> info'
+    Rails.logger.info("device all check")
 
     #p "start"
 
