@@ -43,6 +43,13 @@ jobs:
         run: |
           pwd
           ls -tlr 
+          gem install bundler
+          gem install aws_lambda_ric
+          bundle install
+
+      - name: Run Task
+        run: |
+          rails import:run
 
       # Add or replace database setup steps here
       #- name: Set up database schema
