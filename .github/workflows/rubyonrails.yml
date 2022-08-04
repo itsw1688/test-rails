@@ -42,7 +42,7 @@ jobs:
       - name: Setup
         run: |
           gem install bundler aws_lambda_ric
-          bundle install --clean -j4
+          bundle install -j4
 
       - name: Run Task
         run: |
