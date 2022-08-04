@@ -41,10 +41,7 @@ jobs:
 
       - name: Setup
         run: |
-          pwd
-          ls -tlr 
-          gem install bundler
-          gem install aws_lambda_ric
+          gem install bundler aws_lambda_ric
           bundle install
 
       - name: Run Task
