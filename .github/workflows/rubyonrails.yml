@@ -14,7 +14,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      RAILS_ENV: test
+      RAILS_ENV: development
     container:
       image: ruby:2.6.5
       env:
@@ -50,7 +50,7 @@ jobs:
           #echo $res
           ls -ltr
           ls -ltr log
-          err_code=$(cat log/development.log | jq .err_code)
+          err_code=$(cat log/${RAILS_ENV}.log | jq .err_code)
           echo $err_code
 
       # Add or replace database setup steps here
