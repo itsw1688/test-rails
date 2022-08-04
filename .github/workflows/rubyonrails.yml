@@ -48,6 +48,8 @@ jobs:
         run: |
           rails import:run
           #echo $res
+          ls -ltr
+          ls -ltr log
           err_code=$(cat log/development.log | jq .err_code)
           echo $err_code
 
