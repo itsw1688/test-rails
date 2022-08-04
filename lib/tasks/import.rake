@@ -4,9 +4,9 @@ namespace :import do
 
   task :run => :environment do
 
-    #puts "start"
+    p "start"
 
-    #puts "end"
+    p "end"
 
     puts '{"err_code":100}'
 
