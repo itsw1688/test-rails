@@ -45,8 +45,8 @@ jobs:
           env
           err=$(cat log/${RAILS_ENV}.log | jq .incident)
           if [ "$err" != "null" ]; then
-            env
             rails issue:run
+            exit 1
           fi
 
 
