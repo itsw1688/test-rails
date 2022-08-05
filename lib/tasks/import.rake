@@ -69,8 +69,9 @@ namespace :import do
 }
 EOF
 
+    Rails.logger.debug( res )
     #res = '{"err_code":12345678}'
-    logger.debug( res )
+    #logger.debug( res )
 
     p "end"
 
