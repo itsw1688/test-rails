@@ -24,16 +24,19 @@ namespace :issue do
     file = File.open(data_file)
     json_data = JSON.load(file)
 
+    # get workflow url
+    workflow_url = ENV['GITHUB_SERVER_URL'] + "/" + ENV['GITHUB_REPOSITORY'] + "/actions/runs/" + ENV['GITHUB_RUN_ID']
+
     # create title, body, label
     title = 'Data Import Failure'
     body = format( format_data,
       title: json_data['incident']['title'],
-      created_at: json_data['incident']['created_at'],
+      urgency: json_data['incident']['urgency'],
       service: json_data['incident']['service']['summary'],
-      urgency: json_data['urgency']
+      created_at: json_data['incident']['created_at'],
+      reason: json_data['incident']['reason'],
+      workflow_url: workflow_url
     )
-    #${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
-    body = body + ENV['GITHUB_SERVER_URL'] + "/" + ENV['GITHUB_REPOSITORY'] + "/actions/runs/" + ENV['GITHUB_RUN_ID']
     #body = format_file
     labels = "Alert Messsage"
 

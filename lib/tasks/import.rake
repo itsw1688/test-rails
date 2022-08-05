@@ -27,6 +27,7 @@ namespace :import do
       "self": "",
       "html_url": ""
     },
+    "reason": "101 : not found data file ( gen_xxxxxxxx )",
     "priority": {
       "id": "",
       "type": "",

@@ -1,4 +1,6 @@
-TITLE = %{title}
-CREATED_AT = %{created_at}
-SERVICE = %{service}
-URGENCY = %{urgency}
+TITLE : %{title}
+URGENCY : %{urgency}
+SERVICE : %{service}
+CREATED_AT : %{created_at}
+REASON : %{reason}
+WORKFLOW_URL : %{workflow_url}
