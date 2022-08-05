@@ -3,28 +3,38 @@ require 'octokit'
 
 namespace :issue do
 
-  desc "import task"
+  desc "create github issue task"
 
   task :run => :environment do
 
     p "start"
 
     access_token = ENV['GITHUB_TOKEN']
+    repo = ENV['GITHUB_REPOSITORY']
+    format_file = "lib/format/issue_format.txt"
+    data_file = "log/development.log"
+
     client = Octokit::Client.new(:access_token => access_token)
-    repo = 'itsw1688/test-rails'
+
+    # read format
+    file = File.open(format_file)
+    format_data = File.read(file)
 
     # read json file
-    #json_file_name = 'sample.json'
-    #file = File.open(json_file_name)
-    #json_data = JSON.load(file)
+    file = File.open(data_file)
+    json_data = JSON.load(file)
 
     # create title, body, label
-    title = 'DATA IMPORT ERROR'
-    #body = <<~EOF
-    #  **#{json_data['message']}**
-    #  - status code is #{json_data['status']}
-    #EOF
-    body = 'test'
+    title = 'Data Import Failure'
+    body = format( format_data,
+      title: json_data['incident']['title'],
+      created_at: json_data['incident']['created_at'],
+      service: json_data['incident']['service']['summary'],
+      urgency: json_data['urgency']
+    )
+    #${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
+    body = body + ENV['GITHUB_SERVER_URL'] + "/" + ENV['GITHUB_REPOSITORY'] + "/actions/runs/" + ENV['GITHUB_RUN_ID']
+    #body = format_file
     labels = "Alert Messsage"
 
     # create github issue
