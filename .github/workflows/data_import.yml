@@ -46,7 +46,7 @@ jobs:
           err=$(cat log/${RAILS_ENV}.log | jq .incident)
           echo $err
           if [ "$err" != "null" ]; then
-            cho "NG"
+            echo "NG"
             rails issue:run
             #exit 1
           fi
