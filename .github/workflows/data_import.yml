@@ -48,7 +48,7 @@ jobs:
           if [ "$err" != "null" ]; then
             echo "NG"
             rails issue:run
-            #exit 1
+            exit 1
           fi
 
 
