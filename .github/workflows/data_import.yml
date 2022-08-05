@@ -43,7 +43,7 @@ jobs:
       - name: Check Task And Submit Issue
         run: |
           env
-          err=$(cat log/${RAILS_ENV}.log | jq .incident)
+          err=$(cat log/${RAILS_ENV}.log | jq .incident.reason)
           echo $err
           if [ "$err" != "null" ]; then
             echo "NG"
