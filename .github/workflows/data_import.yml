@@ -40,14 +40,13 @@ jobs:
         run: |
           rails import:run
 
-      - name: Check Task Status
-        run: |
-          err_code=$(cat log/${RAILS_ENV}.log | jq .err_code)
-          echo $err_code
-
-      - name: Submit Issue
+      - name: Check Task And Submit Issue
         run: |
           env
-          rails issue:run
+          err=$(cat log/${RAILS_ENV}.log | jq .incident)
+          if [ "$err" != "null" ]; then
+            env
+            rails issue:run
+          fi
 
 
