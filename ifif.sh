@@ -1,4 +1,7 @@
+export RAILS_ENV=development
+env
+err=$(cat log/${RAILS_ENV}.log | jq .incident)
 if [ "$err" != "null" ]; then
-  echo "OK"
+  rails issue:run
 fi
 

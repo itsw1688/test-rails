@@ -43,10 +43,7 @@ namespace :import do
       "self": "",
       "html_url": ""
     },
-    "error": {
-       "err_code": #{err_code},
-       "err_msg": #{err_msg} }"
-    },
+    "reason": "{ err_code: #{err_code}, err_msg: #{err_msg} }",
     "assigned_via": "escalation_policy",
     "assignments": [
       {
