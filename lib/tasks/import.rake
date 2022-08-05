@@ -7,6 +7,22 @@ namespace :import do
 
     p "start"
 
+    err_code = 0
+    err_msg = ""
+
+    sdate = Time.zone.now
+
+    begin
+
+      NG
+
+    rescue => e
+      err_code = 901
+      err_msg = e
+    end
+
+    edate = Time.zone.now
+
     res = <<~EOF
 {
   "incident": {
@@ -17,7 +33,7 @@ namespace :import do
     "self": "",
     "html_url": "",
     "incident_number": 1234,
-    "created_at": "2022-08-04T21:38:23Z",
+    "created_at": "#{sdate.to_s}",
     "status": "triggered",
     "incident_key": "",
     "service": {
@@ -27,18 +43,11 @@ namespace :import do
       "self": "",
       "html_url": ""
     },
-    "reason": "101 : not found data file ( gen_xxxxxxxx )",
-    "priority": {
-      "id": "",
-      "type": "",
-      "summary": "",
-      "self": "",
-      "html_url": ""
-    },
+    "reason": "{ err_code: #{err_code}, err_msg: #{err_msg} }",
     "assigned_via": "escalation_policy",
     "assignments": [
       {
-        "at": "2022-08-04T21:38:23Z",
+        "at": "#{sdate.to_s}",
         "assignee": {
 	      "id": "",
 	      "type": "",
@@ -71,8 +80,6 @@ namespace :import do
 EOF
 
     Rails.logger.debug( res )
-    #res = '{"err_code":12345678}'
-    #logger.debug( res )
 
     p "end"
 
